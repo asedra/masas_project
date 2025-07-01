@@ -1,0 +1,785 @@
+{
+  "schemas": [
+    {
+      "name": "public",
+      "owner": "pg_database_owner"
+    }
+  ],
+  "tables": [
+    {
+      "schema": "public",
+      "name": "customer_classifications",
+      "type": "BASE TABLE",
+      "is_insertable": "YES",
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "name": "customers",
+      "type": "BASE TABLE",
+      "is_insertable": "YES",
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "name": "dorks",
+      "type": "BASE TABLE",
+      "is_insertable": "YES",
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "name": "email",
+      "type": "BASE TABLE",
+      "is_insertable": "YES",
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "name": "industries",
+      "type": "BASE TABLE",
+      "is_insertable": "YES",
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "name": "one_time",
+      "type": "BASE TABLE",
+      "is_insertable": "YES",
+      "comment": null
+    }
+  ],
+  "columns": [
+    {
+      "schema": "public",
+      "table": "customer_classifications",
+      "name": "id",
+      "position": 1,
+      "default_value": "nextval('customer_classifications_id_seq'::regclass)",
+      "is_nullable": "NO",
+      "data_type": "integer",
+      "max_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "customer_classifications",
+      "name": "customer_id",
+      "position": 2,
+      "default_value": null,
+      "is_nullable": "YES",
+      "data_type": "integer",
+      "max_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "customer_classifications",
+      "name": "dork_id",
+      "position": 3,
+      "default_value": null,
+      "is_nullable": "YES",
+      "data_type": "integer",
+      "max_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "customer_classifications",
+      "name": "has_metal_tin_clues",
+      "position": 4,
+      "default_value": null,
+      "is_nullable": "YES",
+      "data_type": "text",
+      "max_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "customer_classifications",
+      "name": "compatible_with_masas_products",
+      "position": 5,
+      "default_value": null,
+      "is_nullable": "YES",
+      "data_type": "text",
+      "max_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "customer_classifications",
+      "name": "compatibility_score",
+      "position": 6,
+      "default_value": null,
+      "is_nullable": "YES",
+      "data_type": "integer",
+      "max_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "customer_classifications",
+      "name": "should_send_intro_email",
+      "position": 7,
+      "default_value": null,
+      "is_nullable": "YES",
+      "data_type": "text",
+      "max_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "customer_classifications",
+      "name": "description",
+      "position": 8,
+      "default_value": null,
+      "is_nullable": "YES",
+      "data_type": "text",
+      "max_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "customer_classifications",
+      "name": "detailed_compatibility_score",
+      "position": 9,
+      "default_value": null,
+      "is_nullable": "YES",
+      "data_type": "integer",
+      "max_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "customers",
+      "name": "id",
+      "position": 1,
+      "default_value": "nextval('customers_id_seq'::regclass)",
+      "is_nullable": "NO",
+      "data_type": "integer",
+      "max_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "customers",
+      "name": "name",
+      "position": 2,
+      "default_value": null,
+      "is_nullable": "NO",
+      "data_type": "text",
+      "max_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "customers",
+      "name": "website",
+      "position": 3,
+      "default_value": null,
+      "is_nullable": "YES",
+      "data_type": "text",
+      "max_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "customers",
+      "name": "contact_email",
+      "position": 4,
+      "default_value": null,
+      "is_nullable": "YES",
+      "data_type": "text",
+      "max_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "customers",
+      "name": "facebook",
+      "position": 5,
+      "default_value": null,
+      "is_nullable": "YES",
+      "data_type": "text",
+      "max_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "customers",
+      "name": "twitter",
+      "position": 6,
+      "default_value": null,
+      "is_nullable": "YES",
+      "data_type": "text",
+      "max_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "customers",
+      "name": "linkedin",
+      "position": 7,
+      "default_value": null,
+      "is_nullable": "YES",
+      "data_type": "text",
+      "max_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "customers",
+      "name": "instagram",
+      "position": 8,
+      "default_value": null,
+      "is_nullable": "YES",
+      "data_type": "text",
+      "max_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "dorks",
+      "name": "id",
+      "position": 1,
+      "default_value": "nextval('dorks_id_seq'::regclass)",
+      "is_nullable": "NO",
+      "data_type": "integer",
+      "max_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "dorks",
+      "name": "country_code",
+      "position": 2,
+      "default_value": null,
+      "is_nullable": "NO",
+      "data_type": "character varying",
+      "max_length": 2,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "dorks",
+      "name": "industry_id",
+      "position": 3,
+      "default_value": null,
+      "is_nullable": "YES",
+      "data_type": "integer",
+      "max_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "dorks",
+      "name": "content",
+      "position": 4,
+      "default_value": null,
+      "is_nullable": "NO",
+      "data_type": "text",
+      "max_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "dorks",
+      "name": "is_analyzed",
+      "position": 5,
+      "default_value": "0",
+      "is_nullable": "YES",
+      "data_type": "integer",
+      "max_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "email",
+      "name": "id",
+      "position": 1,
+      "default_value": "nextval('email_id_seq'::regclass)",
+      "is_nullable": "NO",
+      "data_type": "integer",
+      "max_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "email",
+      "name": "customer_id",
+      "position": 2,
+      "default_value": null,
+      "is_nullable": "YES",
+      "data_type": "integer",
+      "max_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "email",
+      "name": "content",
+      "position": 3,
+      "default_value": null,
+      "is_nullable": "NO",
+      "data_type": "text",
+      "max_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "industries",
+      "name": "id",
+      "position": 1,
+      "default_value": "nextval('industries_id_seq'::regclass)",
+      "is_nullable": "NO",
+      "data_type": "integer",
+      "max_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "industries",
+      "name": "industry",
+      "position": 2,
+      "default_value": null,
+      "is_nullable": "NO",
+      "data_type": "text",
+      "max_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "one_time",
+      "name": "id",
+      "position": 1,
+      "default_value": "nextval('one_time_id_seq'::regclass)",
+      "is_nullable": "NO",
+      "data_type": "integer",
+      "max_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "one_time",
+      "name": "website",
+      "position": 2,
+      "default_value": null,
+      "is_nullable": "NO",
+      "data_type": "text",
+      "max_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "datetime_precision": null,
+      "comment": null
+    },
+    {
+      "schema": "public",
+      "table": "one_time",
+      "name": "compatibility_score",
+      "position": 3,
+      "default_value": null,
+      "is_nullable": "YES",
+      "data_type": "numeric",
+      "max_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "datetime_precision": null,
+      "comment": null
+    }
+  ],
+  "relationships": [
+    {
+      "schema": "public",
+      "table": "customer_classifications",
+      "constraint_name": "customer_classifications_customer_id_fkey",
+      "column": "customer_id",
+      "foreign_schema": "public",
+      "foreign_table": "customers",
+      "foreign_column": "id",
+      "update_rule": "NO ACTION",
+      "delete_rule": "CASCADE"
+    },
+    {
+      "schema": "public",
+      "table": "customer_classifications",
+      "constraint_name": "customer_classifications_dork_id_fkey",
+      "column": "dork_id",
+      "foreign_schema": "public",
+      "foreign_table": "dorks",
+      "foreign_column": "id",
+      "update_rule": "NO ACTION",
+      "delete_rule": "CASCADE"
+    },
+    {
+      "schema": "public",
+      "table": "dorks",
+      "constraint_name": "dorks_industry_id_fkey",
+      "column": "industry_id",
+      "foreign_schema": "public",
+      "foreign_table": "industries",
+      "foreign_column": "id",
+      "update_rule": "NO ACTION",
+      "delete_rule": "CASCADE"
+    },
+    {
+      "schema": "public",
+      "table": "email",
+      "constraint_name": "email_customer_id_fkey",
+      "column": "customer_id",
+      "foreign_schema": "public",
+      "foreign_table": "customers",
+      "foreign_column": "id",
+      "update_rule": "NO ACTION",
+      "delete_rule": "CASCADE"
+    }
+  ],
+  "constraints": [
+    {
+      "schema": "public",
+      "table": "customer_classifications",
+      "name": "2200_18141_1_not_null",
+      "type": "CHECK",
+      "column": null,
+      "check_clause": "id IS NOT NULL"
+    },
+    {
+      "schema": "public",
+      "table": "customer_classifications",
+      "name": "customer_classifications_compatibility_score_check",
+      "type": "CHECK",
+      "column": null,
+      "check_clause": "((compatibility_score >= 0) AND (compatibility_score <= 100))"
+    },
+    {
+      "schema": "public",
+      "table": "customer_classifications",
+      "name": "customer_classifications_pkey",
+      "type": "PRIMARY KEY",
+      "column": "id",
+      "check_clause": null
+    },
+    {
+      "schema": "public",
+      "table": "customers",
+      "name": "2200_18148_1_not_null",
+      "type": "CHECK",
+      "column": null,
+      "check_clause": "id IS NOT NULL"
+    },
+    {
+      "schema": "public",
+      "table": "customers",
+      "name": "2200_18148_2_not_null",
+      "type": "CHECK",
+      "column": null,
+      "check_clause": "name IS NOT NULL"
+    },
+    {
+      "schema": "public",
+      "table": "customers",
+      "name": "customers_pkey",
+      "type": "PRIMARY KEY",
+      "column": "id",
+      "check_clause": null
+    },
+    {
+      "schema": "public",
+      "table": "dorks",
+      "name": "2200_18154_1_not_null",
+      "type": "CHECK",
+      "column": null,
+      "check_clause": "id IS NOT NULL"
+    },
+    {
+      "schema": "public",
+      "table": "dorks",
+      "name": "2200_18154_2_not_null",
+      "type": "CHECK",
+      "column": null,
+      "check_clause": "country_code IS NOT NULL"
+    },
+    {
+      "schema": "public",
+      "table": "dorks",
+      "name": "2200_18154_4_not_null",
+      "type": "CHECK",
+      "column": null,
+      "check_clause": "content IS NOT NULL"
+    },
+    {
+      "schema": "public",
+      "table": "dorks",
+      "name": "dorks_pkey",
+      "type": "PRIMARY KEY",
+      "column": "id",
+      "check_clause": null
+    },
+    {
+      "schema": "public",
+      "table": "email",
+      "name": "2200_18161_1_not_null",
+      "type": "CHECK",
+      "column": null,
+      "check_clause": "id IS NOT NULL"
+    },
+    {
+      "schema": "public",
+      "table": "email",
+      "name": "2200_18161_3_not_null",
+      "type": "CHECK",
+      "column": null,
+      "check_clause": "content IS NOT NULL"
+    },
+    {
+      "schema": "public",
+      "table": "email",
+      "name": "email_pkey",
+      "type": "PRIMARY KEY",
+      "column": "id",
+      "check_clause": null
+    },
+    {
+      "schema": "public",
+      "table": "industries",
+      "name": "2200_18167_1_not_null",
+      "type": "CHECK",
+      "column": null,
+      "check_clause": "id IS NOT NULL"
+    },
+    {
+      "schema": "public",
+      "table": "industries",
+      "name": "2200_18167_2_not_null",
+      "type": "CHECK",
+      "column": null,
+      "check_clause": "industry IS NOT NULL"
+    },
+    {
+      "schema": "public",
+      "table": "industries",
+      "name": "industries_pkey",
+      "type": "PRIMARY KEY",
+      "column": "id",
+      "check_clause": null
+    },
+    {
+      "schema": "public",
+      "table": "one_time",
+      "name": "2200_18173_1_not_null",
+      "type": "CHECK",
+      "column": null,
+      "check_clause": "id IS NOT NULL"
+    },
+    {
+      "schema": "public",
+      "table": "one_time",
+      "name": "2200_18173_2_not_null",
+      "type": "CHECK",
+      "column": null,
+      "check_clause": "website IS NOT NULL"
+    },
+    {
+      "schema": "public",
+      "table": "one_time",
+      "name": "one_time_pkey",
+      "type": "PRIMARY KEY",
+      "column": "id",
+      "check_clause": null
+    }
+  ],
+  "indexes": [
+    {
+      "schema": "public",
+      "table": "customer_classifications",
+      "name": "customer_classifications_pkey",
+      "definition": "CREATE UNIQUE INDEX customer_classifications_pkey ON public.customer_classifications USING btree (id)"
+    },
+    {
+      "schema": "public",
+      "table": "customers",
+      "name": "customers_pkey",
+      "definition": "CREATE UNIQUE INDEX customers_pkey ON public.customers USING btree (id)"
+    },
+    {
+      "schema": "public",
+      "table": "dorks",
+      "name": "dorks_pkey",
+      "definition": "CREATE UNIQUE INDEX dorks_pkey ON public.dorks USING btree (id)"
+    },
+    {
+      "schema": "public",
+      "table": "email",
+      "name": "email_pkey",
+      "definition": "CREATE UNIQUE INDEX email_pkey ON public.email USING btree (id)"
+    },
+    {
+      "schema": "public",
+      "table": "industries",
+      "name": "industries_pkey",
+      "definition": "CREATE UNIQUE INDEX industries_pkey ON public.industries USING btree (id)"
+    },
+    {
+      "schema": "public",
+      "table": "one_time",
+      "name": "one_time_pkey",
+      "definition": "CREATE UNIQUE INDEX one_time_pkey ON public.one_time USING btree (id)"
+    }
+  ],
+  "functions": [
+    {
+      "schema": "public",
+      "name": "uuid_generate_v1",
+      "arguments": "",
+      "return_type": "uuid",
+      "source_code": "uuid_generate_v1"
+    },
+    {
+      "schema": "public",
+      "name": "uuid_generate_v1mc",
+      "arguments": "",
+      "return_type": "uuid",
+      "source_code": "uuid_generate_v1mc"
+    },
+    {
+      "schema": "public",
+      "name": "uuid_generate_v3",
+      "arguments": "namespace uuid, name text",
+      "return_type": "uuid",
+      "source_code": "uuid_generate_v3"
+    },
+    {
+      "schema": "public",
+      "name": "uuid_generate_v4",
+      "arguments": "",
+      "return_type": "uuid",
+      "source_code": "uuid_generate_v4"
+    },
+    {
+      "schema": "public",
+      "name": "uuid_generate_v5",
+      "arguments": "namespace uuid, name text",
+      "return_type": "uuid",
+      "source_code": "uuid_generate_v5"
+    },
+    {
+      "schema": "public",
+      "name": "uuid_nil",
+      "arguments": "",
+      "return_type": "uuid",
+      "source_code": "uuid_nil"
+    },
+    {
+      "schema": "public",
+      "name": "uuid_ns_dns",
+      "arguments": "",
+      "return_type": "uuid",
+      "source_code": "uuid_ns_dns"
+    },
+    {
+      "schema": "public",
+      "name": "uuid_ns_oid",
+      "arguments": "",
+      "return_type": "uuid",
+      "source_code": "uuid_ns_oid"
+    },
+    {
+      "schema": "public",
+      "name": "uuid_ns_url",
+      "arguments": "",
+      "return_type": "uuid",
+      "source_code": "uuid_ns_url"
+    },
+    {
+      "schema": "public",
+      "name": "uuid_ns_x500",
+      "arguments": "",
+      "return_type": "uuid",
+      "source_code": "uuid_ns_x500"
+    }
+  ],
+  "triggers": []
+}
