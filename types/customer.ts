@@ -9,6 +9,7 @@ export interface Customer {
   instagram: string | null;
   status?: string | null;
   status_comment?: string | null;
+  created_at?: string;
 }
 
 export interface CustomerClassification {

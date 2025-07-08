@@ -37,6 +37,8 @@ export async function getCustomersWithDetails(
     country?: string[] | string;
     detailed_score_min?: number;
     detailed_score_max?: number;
+    created_at_start?: string;
+    created_at_end?: string;
   } = {},
   sort: {
     field?: string;
@@ -54,6 +56,7 @@ export async function getCustomersWithDetails(
         c.twitter,
         c.linkedin,
         c.instagram,
+        c.created_at,
         cc.id as classification_id,
         cc.has_metal_tin_clues,
         cc.compatible_with_masas_products,
@@ -142,6 +145,18 @@ export async function getCustomersWithDetails(
       paramIndex++;
     }
 
+    // Created_at filter
+    if (filters.created_at_start) {
+      query += ` AND c.created_at >= $${paramIndex}`;
+      queryParams.push(filters.created_at_start);
+      paramIndex++;
+    }
+    if (filters.created_at_end) {
+      query += ` AND c.created_at <= $${paramIndex}`;
+      queryParams.push(filters.created_at_end);
+      paramIndex++;
+    }
+
     // Apply sorting
     const sortField = sort.field || 'c.name';
     const sortDirection = sort.direction || 'asc';
@@ -162,6 +177,7 @@ export async function getCustomersWithDetails(
         instagram: row.instagram,
         status: row.status || null,
         status_comment: row.status_comment || null,
+        created_at: row.created_at,
       },
       classification: row.classification_id ? {
         id: row.classification_id,

@@ -39,6 +39,7 @@ export function CustomerDashboard({ initialData }: CustomerDashboardProps) {
   });
   const [industries, setIndustries] = useState<{ id: number; industry: string }[]>(initialData?.available_industries || []);
   const [countries, setCountries] = useState<{ code: string; name: string }[]>(initialData?.available_countries || []);
+  const [dateRange, setDateRange] = useState<{ start: string; end: string }>({ start: '', end: '' });
 
   // Refs for dropdown containers
   const industryDropdownRef = useRef<HTMLDivElement>(null);
@@ -88,6 +89,8 @@ export function CustomerDashboard({ initialData }: CustomerDashboardProps) {
       if (filters.compatibility_score_max !== 100) paramsObj.compatibility_score_max = filters.compatibility_score_max.toString();
       if (filters.detailed_score_min !== undefined && filters.detailed_score_min !== 0) paramsObj.detailed_score_min = filters.detailed_score_min.toString();
       if (filters.detailed_score_max !== undefined && filters.detailed_score_max !== 100) paramsObj.detailed_score_max = filters.detailed_score_max.toString();
+      if (dateRange.start) paramsObj.created_at_start = dateRange.start;
+      if (dateRange.end) paramsObj.created_at_end = dateRange.end;
       const params = new URLSearchParams(paramsObj);
 
       const response = await fetch(`/api/customers/details?${params}`);
@@ -467,6 +470,27 @@ export function CustomerDashboard({ initialData }: CustomerDashboardProps) {
                 </div>
               </div>
               
+              <div className="space-y-2">
+                <label className="text-sm font-medium leading-none">Created At Range</label>
+                <div className="flex gap-2">
+                  <input
+                    type="date"
+                    value={dateRange.start}
+                    onChange={e => setDateRange(prev => ({ ...prev, start: e.target.value }))}
+                    className="flex h-10 w-32 rounded-md border border-input bg-background px-3 py-2 text-sm"
+                    placeholder="Start date"
+                  />
+                  <span className="self-center text-muted-foreground">-</span>
+                  <input
+                    type="date"
+                    value={dateRange.end}
+                    onChange={e => setDateRange(prev => ({ ...prev, end: e.target.value }))}
+                    className="flex h-10 w-32 rounded-md border border-input bg-background px-3 py-2 text-sm"
+                    placeholder="End date"
+                  />
+                </div>
+              </div>
+              
               <div className="flex items-end">
                 <Button type="button" onClick={fetchCustomers} className="w-full">
                   Apply Filters
@@ -488,6 +512,7 @@ export function CustomerDashboard({ initialData }: CustomerDashboardProps) {
                     <TableHead>Dork Content</TableHead>
                     <TableHead>Country</TableHead>
                     <TableHead>Industry</TableHead>
+                    <TableHead>Created At</TableHead>
                     <TableHead>Actions</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -565,6 +590,9 @@ export function CustomerDashboard({ initialData }: CustomerDashboardProps) {
                             <Badge variant="outline">
                               {customer.industry?.industry || 'N/A'}
                             </Badge>
+                          </TableCell>
+                          <TableCell>
+                            {customer.customer.created_at ? new Date(customer.customer.created_at).toLocaleDateString('tr-TR') : 'N/A'}
                           </TableCell>
                           <TableCell>
                             <div className="flex flex-col gap-1">

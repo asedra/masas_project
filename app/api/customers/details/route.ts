@@ -42,6 +42,10 @@ export async function GET(request: NextRequest) {
     // Parse sort parameters
     const sortField = searchParams.get('sort_field') as SortOptions['field'] || 'name';
     const sortDirection = searchParams.get('sort_direction') as 'asc' | 'desc' || 'asc';
+
+    // Parse created_at date range
+    const created_at_start = searchParams.get('created_at_start') || undefined;
+    const created_at_end = searchParams.get('created_at_end') || undefined;
     
     // Map frontend sort fields to database fields
     const sortFieldMap: Record<string, string> = {
@@ -60,6 +64,8 @@ export async function GET(request: NextRequest) {
         detailed_score_max,
         industry: selectedIndustries.length > 0 ? selectedIndustries : undefined,
         country: selectedCountries.length > 0 ? selectedCountries : undefined,
+        created_at_start,
+        created_at_end,
       },
       {
         field: sortFieldMap[sortField] || 'c.name',
@@ -83,7 +89,9 @@ export async function GET(request: NextRequest) {
         detailed_score_min,
         detailed_score_max,
         industry: selectedIndustries.join(', '),
-        country: selectedCountries.join(', ')
+        country: selectedCountries.join(', '),
+        created_at_start,
+        created_at_end,
       },
       sort: {
         field: sortField,
