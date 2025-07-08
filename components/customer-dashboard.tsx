@@ -551,56 +551,64 @@ export function CustomerDashboard({ initialData }: CustomerDashboardProps) {
                             </Badge>
                           </TableCell>
                           <TableCell>
-                            <div className="flex gap-2">
-                              <Button
-                                type="button"
-                                variant="default"
-                                size="sm"
-                                onClick={() => handleStatusUpdate(customer.customer.id, 'approve')}
-                              >
-                                Approve
-                              </Button>
-                              <Button
-                                type="button"
-                                variant="destructive"
-                                size="sm"
-                                onClick={() => handleStatusUpdate(customer.customer.id, 'reject')}
-                              >
-                                Reject
-                              </Button>
-                              <Dialog onOpenChange={(open) => {
-                                if (open) setSelectedCustomer(customer);
-                              }}>
-                                <DialogTrigger asChild>
+                            <div className="flex flex-col gap-1">
+                              <span className="text-xs font-semibold">
+                                {customer.customer.status === 'approve' ? 'Approved' : customer.customer.status === 'reject' ? 'Rejected' : customer.customer.status === 'comment' && customer.customer.status_comment ? 'Comment' : ''}
+                              </span>
+                              {customer.customer.status === 'approve' || customer.customer.status === 'reject' ? null : (
+                                <div className="flex gap-2 mt-1">
                                   <Button
                                     type="button"
-                                    variant="outline"
+                                    variant="default"
                                     size="sm"
+                                    onClick={() => handleStatusUpdate(customer.customer.id, 'approve')}
                                   >
-                                    Comment
+                                    Approve
                                   </Button>
-                                </DialogTrigger>
-                                <DialogContent className="max-w-md">
-                                  <DialogHeader>
-                                    <DialogTitle>Comment for {customer.customer.name}</DialogTitle>
-                                  </DialogHeader>
-                                  <textarea
-                                    className="w-full border rounded p-2 mt-2"
-                                    rows={3}
-                                    value={comment}
-                                    onChange={e => setComment(e.target.value)}
-                                    placeholder="Enter your comment..."
-                                  />
                                   <Button
                                     type="button"
-                                    variant="outline"
+                                    variant="destructive"
                                     size="sm"
-                                    onClick={() => handleStatusUpdate(customer.customer.id, 'comment', comment)}
+                                    onClick={() => handleStatusUpdate(customer.customer.id, 'reject')}
                                   >
-                                    Submit
+                                    Reject
                                   </Button>
-                                </DialogContent>
-                              </Dialog>
+                                  <Dialog onOpenChange={(open) => {
+                                    if (open) setSelectedCustomer(customer);
+                                  }}>
+                                    <DialogTrigger asChild>
+                                      <Button
+                                        type="button"
+                                        variant={customer.customer.status === 'comment' && customer.customer.status_comment ? undefined : 'outline'}
+                                        size="sm"
+                                        className={customer.customer.status === 'comment' && customer.customer.status_comment ? 'bg-green-500 text-white hover:bg-green-600' : ''}
+                                      >
+                                        Comment
+                                      </Button>
+                                    </DialogTrigger>
+                                    <DialogContent className="max-w-md">
+                                      <DialogHeader>
+                                        <DialogTitle>Comment for {customer.customer.name}</DialogTitle>
+                                      </DialogHeader>
+                                      <textarea
+                                        className="w-full border rounded p-2 mt-2"
+                                        rows={3}
+                                        value={comment}
+                                        onChange={e => setComment(e.target.value)}
+                                        placeholder="Enter your comment..."
+                                      />
+                                      <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => handleStatusUpdate(customer.customer.id, 'comment', comment)}
+                                      >
+                                        Submit
+                                      </Button>
+                                    </DialogContent>
+                                  </Dialog>
+                                </div>
+                              )}
                             </div>
                           </TableCell>
                         </TableRow>

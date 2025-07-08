@@ -68,7 +68,9 @@ export async function getCustomersWithDetails(
         i.id as industry_id,
         i.industry,
         e.id as email_id,
-        e.content as email_content
+        e.content as email_content,
+        cs.status as status,
+        cs.comment as status_comment
       FROM customers c
       LEFT JOIN customer_classifications cc ON c.id = cc.customer_id
       LEFT JOIN dorks d ON cc.dork_id = d.id
@@ -79,6 +81,12 @@ export async function getCustomersWithDetails(
         FROM email 
         ORDER BY customer_id, id DESC
       ) e ON c.id = e.customer_id
+      LEFT JOIN (
+        SELECT DISTINCT ON (customer_id)
+          id, customer_id, status, comment, updated_at
+        FROM customer_status
+        ORDER BY customer_id, updated_at DESC
+      ) cs ON c.id = cs.customer_id
       WHERE 1=1
     `;
 
@@ -152,6 +160,8 @@ export async function getCustomersWithDetails(
         twitter: row.twitter,
         linkedin: row.linkedin,
         instagram: row.instagram,
+        status: row.status || null,
+        status_comment: row.status_comment || null,
       },
       classification: row.classification_id ? {
         id: row.classification_id,

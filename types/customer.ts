@@ -7,6 +7,8 @@ export interface Customer {
   twitter: string | null;
   linkedin: string | null;
   instagram: string | null;
+  status?: string | null;
+  status_comment?: string | null;
 }
 
 export interface CustomerClassification {
