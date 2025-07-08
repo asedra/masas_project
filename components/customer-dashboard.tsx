@@ -600,11 +600,12 @@ export function CustomerDashboard({ initialData }: CustomerDashboardProps) {
                                 {customer.customer.status === 'approve' ? 'Approved' : customer.customer.status === 'reject' ? 'Rejected' : customer.customer.status === 'comment' && customer.customer.status_comment ? 'Comment' : ''}
                               </span>
                               {customer.customer.status === 'approve' || customer.customer.status === 'reject' ? null : (
-                                <div className="flex gap-2 mt-1">
+                                <div className="flex flex-row flex-wrap gap-2 mt-1 items-center">
                                   <Button
                                     type="button"
                                     variant="default"
                                     size="sm"
+                                    className="h-8 bg-green-500 text-white hover:bg-green-600"
                                     onClick={() => handleStatusUpdate(customer.customer.id, 'approve')}
                                   >
                                     Approve
@@ -613,6 +614,7 @@ export function CustomerDashboard({ initialData }: CustomerDashboardProps) {
                                     type="button"
                                     variant="destructive"
                                     size="sm"
+                                    className="h-8"
                                     onClick={() => handleStatusUpdate(customer.customer.id, 'reject')}
                                   >
                                     Reject
@@ -625,7 +627,7 @@ export function CustomerDashboard({ initialData }: CustomerDashboardProps) {
                                         type="button"
                                         variant={customer.customer.status === 'comment' && customer.customer.status_comment ? undefined : 'outline'}
                                         size="sm"
-                                        className={customer.customer.status === 'comment' && customer.customer.status_comment ? 'bg-green-500 text-white hover:bg-green-600' : ''}
+                                        className={`h-8 ${customer.customer.status === 'comment' && customer.customer.status_comment ? 'bg-green-500 text-white hover:bg-green-600' : ''}`}
                                       >
                                         Comment
                                       </Button>
@@ -641,14 +643,16 @@ export function CustomerDashboard({ initialData }: CustomerDashboardProps) {
                                         onChange={e => setComment(e.target.value)}
                                         placeholder="Enter your comment..."
                                       />
-                                      <Button
-                                        type="button"
-                                        variant="outline"
-                                        size="sm"
-                                        onClick={() => handleStatusUpdate(customer.customer.id, 'comment', comment)}
-                                      >
-                                        Submit
-                                      </Button>
+                                      <div className="flex justify-end mt-2">
+                                        <Button
+                                          type="button"
+                                          variant="outline"
+                                          size="sm"
+                                          onClick={() => handleStatusUpdate(customer.customer.id, 'comment', comment)}
+                                        >
+                                          Submit
+                                        </Button>
+                                      </div>
                                     </DialogContent>
                                   </Dialog>
                                 </div>
