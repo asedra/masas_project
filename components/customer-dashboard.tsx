@@ -24,6 +24,7 @@ export function CustomerDashboard({ initialData }: CustomerDashboardProps) {
   const [loading, setLoading] = useState(!initialData);
   const [expandedRows, setExpandedRows] = useState<Set<number>>(new Set());
   const [selectedCustomer, setSelectedCustomer] = useState<CustomerDetails | null>(null);
+  const [comment, setComment] = useState("");
   const [filters, setFilters] = useState<FilterOptions>({
     compatibility_score_min: 0,
     compatibility_score_max: 100,
@@ -205,6 +206,17 @@ export function CustomerDashboard({ initialData }: CustomerDashboardProps) {
         )}
       </div>
     );
+  };
+
+  const handleStatusUpdate = async (customerId: number, status: string, comment?: string) => {
+    await fetch("/api/customers/status", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ customer_id: customerId, status, comment }),
+    });
+    setComment("");
+    setSelectedCustomer(null);
+    // Optionally refresh data or show notification
   };
 
   return (
@@ -540,10 +552,24 @@ export function CustomerDashboard({ initialData }: CustomerDashboardProps) {
                           </TableCell>
                           <TableCell>
                             <div className="flex gap-2">
+                              <Button
+                                type="button"
+                                variant="default"
+                                size="sm"
+                                onClick={() => handleStatusUpdate(customer.customer.id, 'approve')}
+                              >
+                                Approve
+                              </Button>
+                              <Button
+                                type="button"
+                                variant="destructive"
+                                size="sm"
+                                onClick={() => handleStatusUpdate(customer.customer.id, 'reject')}
+                              >
+                                Reject
+                              </Button>
                               <Dialog onOpenChange={(open) => {
-                                if (open) {
-                                  setSelectedCustomer(customer);
-                                }
+                                if (open) setSelectedCustomer(customer);
                               }}>
                                 <DialogTrigger asChild>
                                   <Button
@@ -551,27 +577,28 @@ export function CustomerDashboard({ initialData }: CustomerDashboardProps) {
                                     variant="outline"
                                     size="sm"
                                   >
-                                    <Mail className="h-4 w-4 mr-1" />
-                                    View Email
+                                    Comment
                                   </Button>
                                 </DialogTrigger>
-                                <DialogContent className="max-w-2xl">
+                                <DialogContent className="max-w-md">
                                   <DialogHeader>
-                                    <DialogTitle>Latest Email - {customer.customer.name}</DialogTitle>
+                                    <DialogTitle>Comment for {customer.customer.name}</DialogTitle>
                                   </DialogHeader>
-                                  <div className="space-y-4">
-                                    <div className="bg-muted p-4 rounded-lg">
-                                      <p className="text-sm whitespace-pre-wrap leading-relaxed">
-                                        {customer.latest_email?.content || 'No email content available.'}
-                                      </p>
-                                    </div>
-                                    <div className="text-sm text-muted-foreground space-y-1">
-                                      <p><strong>Customer:</strong> {customer.customer.name}</p>
-                                      <p><strong>Email:</strong> {customer.customer.contact_email}</p>
-                                      <p><strong>Compatibility Score:</strong> {customer.classification?.compatibility_score || 0}%</p>
-                                      <p><strong>Description:</strong> {customer.classification?.description || 'N/A'}</p>
-                                    </div>
-                                  </div>
+                                  <textarea
+                                    className="w-full border rounded p-2 mt-2"
+                                    rows={3}
+                                    value={comment}
+                                    onChange={e => setComment(e.target.value)}
+                                    placeholder="Enter your comment..."
+                                  />
+                                  <Button
+                                    type="button"
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => handleStatusUpdate(customer.customer.id, 'comment', comment)}
+                                  >
+                                    Submit
+                                  </Button>
                                 </DialogContent>
                               </Dialog>
                             </div>

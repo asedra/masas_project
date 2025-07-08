@@ -230,4 +230,21 @@ export async function getCountries(): Promise<{ code: string; name: string }[]> 
 // Close the pool when the app shuts down
 export async function closePool() {
   await pool.end();
+}
+
+export async function updateCustomerStatus(customer_id: number, status: string, comment?: string) {
+  try {
+    const now = new Date().toISOString();
+    // Assuming you have a DB client instance named `db` (adjust as needed)
+    await pool.query(
+      `INSERT INTO customer_status (customer_id, status, comment, updated_at)
+       VALUES ($1, $2, $3, $4)
+       ON CONFLICT (customer_id) DO UPDATE
+       SET status = EXCLUDED.status, comment = EXCLUDED.comment, updated_at = EXCLUDED.updated_at`,
+      [customer_id, status, comment || null, now]
+    );
+    return { success: true };
+  } catch (error: any) {
+    return { error: error.message };
+  }
 } 
