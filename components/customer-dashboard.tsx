@@ -209,14 +209,30 @@ export function CustomerDashboard({ initialData }: CustomerDashboardProps) {
   };
 
   const handleStatusUpdate = async (customerId: number, status: string, comment?: string) => {
-    await fetch("/api/customers/status", {
+    const res = await fetch("/api/customers/status", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ customer_id: customerId, status, comment }),
     });
+    if (res.ok) {
+      setCustomers(prev =>
+        prev.map(c =>
+          c.customer.id === customerId
+            ? {
+                ...c,
+                customer: {
+                  ...c.customer,
+                  status,
+                  status_comment: status === "comment" ? comment : null,
+                },
+              }
+            : c
+        )
+      );
+    }
     setComment("");
     setSelectedCustomer(null);
-    // Optionally refresh data or show notification
+    // Optionally show notification here
   };
 
   return (
